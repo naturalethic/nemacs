@@ -1,0 +1,349 @@
+{
+  "name": "nemacs",
+  "displayName": "nemacs",
+  "description": "Emacs Keys and Proper Mark",
+  "version": "0.0.1",
+  "publisher": "moonlight(pm)",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "nemacs.mark",
+        "title": "Set Mark"
+      },
+      {
+        "command": "nemacs.cursorUp",
+        "title": "Cursor Up"
+      },
+      {
+        "command": "nemacs.cursorDown",
+        "title": "Cursor Down"
+      },
+      {
+        "command": "nemacs.cursorLeft",
+        "title": "Cursor Left"
+      },
+      {
+        "command": "nemacs.cursorRight",
+        "title": "Cursor Right"
+      },
+      {
+        "command": "nemacs.cursorHome",
+        "title": "Cursor Home"
+      },
+      {
+        "command": "nemacs.cursorEnd",
+        "title": "Cursor End"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "ctrl+x ctrl+f",
+        "command": "workbench.action.files.openFile"
+      },
+      {
+        "key": "ctrl+x ctrl+s",
+        "command": "workbench.action.files.save"
+      },
+      {
+        "key": "ctrl+x s",
+        "command": "workbench.action.files.saveAll"
+      },
+      {
+        "key": "ctrl+x b",
+        "command": "workbench.action.quickOpen"
+      },
+      {
+        "key": "ctrl+a",
+        "command": "nemacs.cursorHome",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+e",
+        "command": "nemacs.cursorEnd",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "cmd+f",
+        "command": "cursorWordRight",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "cmd+b",
+        "command": "cursorWordLeft",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+v",
+        "command": "cursorPageDown",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "cmd+v",
+        "command": "cursorPageUp",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+space",
+        "command": "nemacs.mark",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+g",
+        "command": "cancelSelection"
+      },
+      {
+        "key": "ctrl+g",
+        "command": "closePeekDeclarationEditor",
+        "when": "editorFocus && inInnerEditor"
+      },
+      {
+        "key": "ctrl+g",
+        "command": "closeReferenceSearchEditor",
+        "when": "editorFocus && inInnerEditor"
+      },
+      {
+        "key": "ctrl+g",
+        "command": "removeSecondaryCursors",
+        "when": "editorTextFocus && editorHasMultipleSelections"
+      },
+      {
+        "key": "ctrl+g",
+        "command": "closeFindWidget",
+        "when": "editorFocus && findWidgetVisible"
+      },
+      {
+        "key": "ctrl+g",
+        "command": "leaveChangeAllMode",
+        "when": "editorTextFocus && inChangeAllMode"
+      },
+      {
+        "key": "ctrl+g",
+        "command": "leaveSnippet",
+        "when": "editorTextFocus && inSnippetMode"
+      },
+      {
+        "key": "ctrl+g",
+        "command": "closeMarkersNavigation",
+        "when": "editorFocus && markersNavigationVisible"
+      },
+      {
+        "key": "ctrl+g",
+        "command": "closePeekDeclaration",
+        "when": "editorFocus && peekDeclarationVisible"
+      },
+      {
+        "key": "ctrl+g",
+        "command": "closeReferenceSearch",
+        "when": "editorFocus && referenceSearchVisible"
+      },
+      {
+        "key": "ctrl+g",
+        "command": "closeParameterHints",
+        "when": "editorTextFocus && parameterHintsVisible"
+      },
+      {
+        "key": "ctrl+g",
+        "command": "closeQuickFixWidget",
+        "when": "editorFocus && quickFixWidgetVisible"
+      },
+      {
+        "key": "ctrl+g",
+        "command": "hideSuggestWidget",
+        "when": "editorTextFocus && suggestWidgetVisible"
+      },
+      {
+        "key": "ctrl+g",
+        "command": "cancelRenameInput",
+        "when": "editorFocus && renameInputVisible"
+      },
+      {
+        "key": "ctrl+g",
+        "command": "workbench.action.closeMessages",
+        "when": "globalMessageVisible"
+      },
+      {
+        "key": "ctrl+/",
+        "command": "undo",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+cmd+/",
+        "command": "redo",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+f",
+        "command": "nemacs.cursorRight",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+b",
+        "command": "nemacs.cursorLeft",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+n",
+        "command": "nemacs.cursorDown",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+p",
+        "command": "workbench.action.quickOpenNavigatePrevious",
+        "when": "inQuickOpen"
+      },
+      {
+        "key": "ctrl+n",
+        "command": "workbench.action.quickOpenNavigateNext",
+        "when": "inQuickOpen"
+      },
+      {
+        "key": "ctrl+d",
+        "command": "deleteRight",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+h",
+        "command": "deleteLeft",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "cmd+d",
+        "command": "deleteWordRight",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "cmd+h",
+        "command": "deleteWordLeft",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "cmd+w",
+        "command": "editor.action.clipboardCopyAction",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+w",
+        "command": "editor.action.clipboardCutAction",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+y",
+        "command": "editor.action.clipboardPasteAction",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+p",
+        "command": "nemacs.cursorUp",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+n",
+        "command": "showNextParameterHint",
+        "when": "editorTextFocus && parameterHintsVisible"
+      },
+      {
+        "key": "ctrl+p",
+        "command": "showPrevParameterHint",
+        "when": "editorTextFocus && parameterHintsVisible"
+      },
+      {
+        "key": "ctrl+v",
+        "command": "selectNextPageQuickFix",
+        "when": "editorFocus && quickFixWidgetVisible"
+      },
+      {
+        "key": "ctrl+n",
+        "command": "selectNextQuickFix",
+        "when": "editorFocus && quickFixWidgetVisible"
+      },
+      {
+        "key": "cmd+v",
+        "command": "selectPrevPageQuickFix",
+        "when": "editorFocus && quickFixWidgetVisible"
+      },
+      {
+        "key": "ctrl+p",
+        "command": "selectPrevQuickFix",
+        "when": "editorFocus && quickFixWidgetVisible"
+      },
+      {
+        "key": "ctrl+v",
+        "command": "selectNextPageSuggestion",
+        "when": "editorTextFocus && suggestWidgetVisible"
+      },
+      {
+        "key": "ctrl+n",
+        "command": "selectNextSuggestion",
+        "when": "editorTextFocus && suggestWidgetVisible"
+      },
+      {
+        "key": "cmd+v",
+        "command": "selectPrevPageSuggestion",
+        "when": "editorTextFocus && suggestWidgetVisible"
+      },
+      {
+        "key": "ctrl+p",
+        "command": "selectPrevSuggestion",
+        "when": "editorTextFocus && suggestWidgetVisible"
+      },
+      {
+        "key": "ctrl+s",
+        "command": "actions.find",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+s",
+        "command": "editor.action.nextMatchFindAction",
+        "when": "editorFocus && findWidgetVisible"
+      },
+      {
+        "key": "ctrl+r",
+        "command": "actions.find",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+r",
+        "command": "editor.action.previousMatchFindAction",
+        "when": "editorFocus && findWidgetVisible"
+      },
+      {
+        "key": "cmd+shift+5",
+        "command": "editor.action.startFindReplaceAction",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+/",
+        "command": "undo",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+cmd+/",
+        "command": "redo",
+        "when": "editorTextFocus"
+      },
+      { "key": "cmd+;",
+        "command": "editor.action.commentLine",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+    "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "typescript": "^1.8.5",
+    "vscode": "^0.11.0"
+  }
+}
