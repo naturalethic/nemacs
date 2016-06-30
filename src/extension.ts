@@ -10,6 +10,9 @@ export function activate(context: ExtensionContext) {
       nemacs.cursorMove(cmd)
     }))
   }
+  context.subscriptions.push(commands.registerCommand('nemacs.killLine', () => {
+    nemacs.killLine()
+  }))
   context.subscriptions.push(nemacs)
 }
 
@@ -50,6 +53,16 @@ class Nemacs {
     this.marked = false
     this.moving = false
     commands.executeCommand('cancelSelection')
+  }
+
+  public killLine() {
+    let sel = window.activeTextEditor.selection
+    let line = window.activeTextEditor.document.lineAt(sel.active.line)
+    if (line.range.end.character == sel.active.character) {
+      commands.executeCommand('deleteRight')
+    } else {
+      commands.executeCommand('deleteAllRight')
+    }
   }
 
   dispose() {
