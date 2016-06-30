@@ -1,8 +1,8 @@
 {
   "name": "nemacs",
   "displayName": "nemacs",
-  "description": "Emacs Keys and Proper Mark",
-  "version": "0.0.1",
+  "description": "Minimal emacs keys extension for VSCode with better mark/region support",
+  "version": "1.0.0",
   "publisher": "moonlight(pm)",
   "engines": {
     "vscode": "^1.0.0"
