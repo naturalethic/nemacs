@@ -2,8 +2,13 @@
   "name": "nemacs",
   "displayName": "nemacs",
   "description": "Minimal emacs keys extension for VSCode with better mark/region support",
-  "version": "1.0.0",
-  "publisher": "moonlight(pm)",
+  "version": "1.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/naturalethic/nemacs.git"
+  },
+  "icon": "icon.png",
+  "publisher": "naturalethic",
   "engines": {
     "vscode": "^1.0.0"
   },
