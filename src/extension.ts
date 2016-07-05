@@ -1,4 +1,5 @@
-import {commands, window, Disposable, ExtensionContext, Selection, Position} from 'vscode'
+import {commands, workspace, window, Disposable, ExtensionContext, Selection, Position} from 'vscode'
+import {execSync} from 'child_process'
 
 export function activate(context: ExtensionContext) {
   let nemacs = new Nemacs()
@@ -13,6 +14,9 @@ export function activate(context: ExtensionContext) {
   context.subscriptions.push(commands.registerCommand('nemacs.killLine', () => {
     nemacs.killLine()
   }))
+  context.subscriptions.push(commands.registerCommand('nemacs.yank', () => {
+    nemacs.yank()
+  }))
   context.subscriptions.push(nemacs)
 }
 
@@ -20,6 +24,7 @@ class Nemacs {
   private disposable: Disposable
   private marked: boolean = false
   private moving: boolean = false
+  private ringBuffer: string = ''
 
   constructor() {
     let subscriptions: Disposable[] = []
@@ -43,10 +48,19 @@ class Nemacs {
     }
   }
 
+  private copyRingBuffer() {
+    if (this.ringBuffer) {
+      console.log('COPYING', JSON.stringify(this.ringBuffer))
+      execSync('pbcopy', {input: this.ringBuffer})
+      this.ringBuffer = ''
+    }
+  }
+
   private onDidChangeTextEditorSelection(e) {
     if (this.marked && !this.moving) {
       this.cancelSelection()
     }
+    this.copyRingBuffer()
   }
 
   public cancelSelection() {
@@ -58,11 +72,22 @@ class Nemacs {
   public killLine() {
     let sel = window.activeTextEditor.selection
     let line = window.activeTextEditor.document.lineAt(sel.active.line)
-    if (line.range.end.character == sel.active.character) {
-      commands.executeCommand('deleteRight')
+    if (this.marked) {
+      commands.executeCommand('editor.action.clipboardCutAction')
+    } else if (line.range.end.character == sel.active.character) {
+      if (line.lineNumber < window.activeTextEditor.document.lineCount - 1) {
+        this.ringBuffer = this.ringBuffer + workspace.getConfiguration('files').get('eol')
+        commands.executeCommand('deleteRight')
+      }
     } else {
+      this.ringBuffer = this.ringBuffer + line.text.substring(sel.active.character, line.range.end.character)
       commands.executeCommand('deleteAllRight')
     }
+  }
+
+  public yank() {
+    this.copyRingBuffer()
+    commands.executeCommand('editor.action.clipboardPasteAction')
   }
 
   dispose() {

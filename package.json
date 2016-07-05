@@ -2,7 +2,7 @@
   "name": "nemacs",
   "displayName": "nemacs",
   "description": "Minimal emacs keys extension for VSCode with better mark/region support",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/naturalethic/nemacs.git"
@@ -52,6 +52,10 @@
       {
         "command": "nemacs.killLine",
         "title": "Kill Line"
+      },
+      {
+        "command": "nemacs.yank",
+        "title": "Yank"
       }
     ],
     "keybindings": [
@@ -247,7 +251,7 @@
       },
       {
         "key": "ctrl+y",
-        "command": "editor.action.clipboardPasteAction",
+        "command": "nemacs.yank",
         "when": "editorTextFocus"
       },
       {
@@ -340,7 +344,8 @@
         "command": "redo",
         "when": "editorTextFocus"
       },
-      { "key": "cmd+;",
+      {
+        "key": "cmd+;",
         "command": "editor.action.commentLine",
         "when": "editorTextFocus"
       },
