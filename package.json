@@ -2,7 +2,7 @@
   "name": "nemacs",
   "displayName": "nemacs",
   "description": "Minimal emacs keys extension for VSCode with better mark/region support",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/naturalethic/nemacs.git"
@@ -61,7 +61,7 @@
     "keybindings": [
       {
         "key": "ctrl+x ctrl+f",
-        "command": "workbench.action.files.openFile"
+        "command": "workbench.action.files.openFileFolder"
       },
       {
         "key": "ctrl+x ctrl+s",
