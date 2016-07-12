@@ -1,4 +1,4 @@
-import {commands, workspace, window, Disposable, ExtensionContext, Selection, Position} from 'vscode'
+import {commands, workspace, window, Disposable, ExtensionContext, Selection, Position, TextEditorRevealType} from 'vscode'
 import {execSync} from 'child_process'
 
 export function activate(context: ExtensionContext) {
@@ -16,6 +16,12 @@ export function activate(context: ExtensionContext) {
   }))
   context.subscriptions.push(commands.registerCommand('nemacs.yank', () => {
     nemacs.yank()
+  }))
+  context.subscriptions.push(commands.registerCommand('nemacs.copy', () => {
+    nemacs.copy()
+  }))
+  context.subscriptions.push(commands.registerCommand('nemacs.centerVertically', () => {
+    nemacs.centerVertically()
   }))
   context.subscriptions.push(nemacs)
 }
@@ -50,7 +56,6 @@ class Nemacs {
 
   private copyRingBuffer() {
     if (this.ringBuffer) {
-      console.log('COPYING', JSON.stringify(this.ringBuffer))
       execSync('pbcopy', {input: this.ringBuffer})
       this.ringBuffer = ''
     }
@@ -88,6 +93,15 @@ class Nemacs {
   public yank() {
     this.copyRingBuffer()
     commands.executeCommand('editor.action.clipboardPasteAction')
+  }
+
+  public copy() {
+    commands.executeCommand('editor.action.clipboardCopyAction')
+    this.cancelSelection()
+  }
+
+  public centerVertically() {
+    window.activeTextEditor.revealRange(window.activeTextEditor.selection.with(), TextEditorRevealType.InCenter)
   }
 
   dispose() {
