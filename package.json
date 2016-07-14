@@ -2,7 +2,7 @@
   "name": "nemacs",
   "displayName": "nemacs",
   "description": "Minimal emacs keys extension for VSCode with better mark/region support",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "repository": {
     "type": "git",
     "url": "https://github.com/naturalethic/nemacs.git"
@@ -20,48 +20,6 @@
   ],
   "main": "./out/src/extension",
   "contributes": {
-    "commands": [
-      {
-        "command": "nemacs.mark",
-        "title": "Set Mark"
-      },
-      {
-        "command": "nemacs.cursorUp",
-        "title": "Cursor Up"
-      },
-      {
-        "command": "nemacs.cursorDown",
-        "title": "Cursor Down"
-      },
-      {
-        "command": "nemacs.cursorLeft",
-        "title": "Cursor Left"
-      },
-      {
-        "command": "nemacs.cursorRight",
-        "title": "Cursor Right"
-      },
-      {
-        "command": "nemacs.cursorHome",
-        "title": "Cursor Home"
-      },
-      {
-        "command": "nemacs.cursorEnd",
-        "title": "Cursor End"
-      },
-      {
-        "command": "nemacs.killLine",
-        "title": "Kill Line"
-      },
-      {
-        "command": "nemacs.yank",
-        "title": "Yank"
-      },
-      {
-        "command": "nemacs.copy",
-        "title": "Copy"
-      }
-    ],
     "keybindings": [
       {
         "key": "ctrl+x ctrl+f",
@@ -101,12 +59,12 @@
       },
       {
         "key": "ctrl+v",
-        "command": "cursorPageDown",
+        "command": "nemacs.cursorPageDown",
         "when": "editorTextFocus"
       },
       {
         "key": "cmd+v",
-        "command": "cursorPageUp",
+        "command": "nemacs.cursorPageUp",
         "when": "editorTextFocus"
       },
       {

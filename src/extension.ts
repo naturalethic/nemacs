@@ -6,7 +6,7 @@ export function activate(context: ExtensionContext) {
   context.subscriptions.push(commands.registerCommand('nemacs.mark', () => {
     nemacs.mark()
   }))
-  for (let cmd of ['cursorUp', 'cursorDown', 'cursorLeft', 'cursorRight', 'cursorHome', 'cursorEnd']) {
+  for (let cmd of ['cursorUp', 'cursorDown', 'cursorLeft', 'cursorRight', 'cursorHome', 'cursorEnd', 'cursorPageUp', 'cursorPageDown']) {
     context.subscriptions.push(commands.registerCommand(`nemacs.${cmd}`, () => {
       nemacs.cursorMove(cmd)
     }))
