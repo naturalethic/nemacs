@@ -9,3 +9,5 @@
 
 ## [1.1.1] - 2023-02-25
 - Configured to prefer running on local client when using remote ssh connection, fixing the random loss of mark selection.
+- Fixed https://github.com/naturalethic/nemacs/issues/3
+- Fixed https://github.com/naturalethic/nemacs/issues/4

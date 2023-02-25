@@ -4,7 +4,6 @@ import {
   commands,
   Disposable,
   ExtensionContext,
-  TextEditorRevealType,
   window,
   workspace,
 } from 'vscode';
@@ -54,6 +53,11 @@ export function activate(context: ExtensionContext) {
 			nemacs.centerVertically();
 		}),
 	);
+	context.subscriptions.push(
+		commands.registerCommand("nemacs.deleteWordRight", () => {
+			nemacs.deleteWordRight();
+		}),
+	);
 	context.subscriptions.push(nemacs);
 }
 
@@ -77,14 +81,16 @@ class Nemacs {
 		this.marked = true;
 	}
 
-	public cursorMove(command: string) {
+	public async cursorMove(command: string) {
 		if (this.marked) {
 			this.moving = true;
-			commands.executeCommand(`${command}Select`).then(() => {
-				this.moving = false;
-			});
+			await commands.executeCommand(`${command}Select`);
+			this.moving = false;
 		} else {
-			commands.executeCommand(command);
+			await commands.executeCommand(command);
+		}
+		if (["cursorPageUp", "cursorPageDown"].includes(command)) {
+			this.centerVertically();
 		}
 	}
 
@@ -141,10 +147,16 @@ class Nemacs {
 	}
 
 	public centerVertically() {
-		window.activeTextEditor?.revealRange(
-			window.activeTextEditor.selection.with(),
-			TextEditorRevealType.InCenter,
-		);
+		if (!window.activeTextEditor) return;
+		commands.executeCommand("revealLine", {
+			lineNumber: window.activeTextEditor.selection.active.line,
+			at: "center",
+		});
+	}
+
+	public deleteWordRight() {
+		commands.executeCommand("cursorWordRightSelect");
+		commands.executeCommand("editor.action.clipboardCutAction");
 	}
 
 	dispose() {

@@ -197,7 +197,7 @@
             },
             {
                 "key": "cmd+d",
-                "command": "deleteWordRight",
+                "command": "nemacs.deleteWordRight",
                 "when": "editorTextFocus"
             },
             {
