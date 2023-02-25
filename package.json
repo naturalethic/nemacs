@@ -10,7 +10,7 @@
     "icon": "icon.png",
     "publisher": "naturalethic",
     "engines": {
-        "vscode": "^1.61.0"
+        "vscode": "^1.75.1"
     },
     "categories": [
         "Other"
