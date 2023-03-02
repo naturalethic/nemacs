@@ -11,3 +11,6 @@
 - Configured to prefer running on local client when using remote ssh connection, fixing the random loss of mark selection.
 - Fixed https://github.com/naturalethic/nemacs/issues/3
 - Fixed https://github.com/naturalethic/nemacs/issues/4
+
+## [1.1.2] - 2023-03-02
+- Fixed a bug where cancelling (ctrl-g) after having begun a mark, but not moving the cursor, did not cancel mark mode.

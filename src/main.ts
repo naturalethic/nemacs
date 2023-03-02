@@ -1,12 +1,12 @@
-import { execSync } from 'child_process';
-import * as os from 'os';
+import { execSync } from "child_process";
+import * as os from "os";
 import {
-  commands,
-  Disposable,
-  ExtensionContext,
-  window,
-  workspace,
-} from 'vscode';
+	commands,
+	Disposable,
+	ExtensionContext,
+	window,
+	workspace,
+} from "vscode";
 
 export function deactivate() {}
 
@@ -58,6 +58,12 @@ export function activate(context: ExtensionContext) {
 			nemacs.deleteWordRight();
 		}),
 	);
+	context.subscriptions.push(
+		commands.registerCommand("nemacs.cancelSelection", () => {
+			nemacs.cancelSelection();
+		}),
+	);
+
 	context.subscriptions.push(nemacs);
 }
 
